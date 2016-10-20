@@ -2,7 +2,6 @@ package es.upm.miw.sports;
 
 import es.upm.miw.sports.exceptions.InvalidRequestException;
 import es.upm.miw.sports.exceptions.InvalidSportFieldException;
-import es.upm.miw.sports.exceptions.InvalidThemeFieldException;
 import es.upm.miw.sports.resources.SportResource;
 import es.upm.miw.sports.resources.UserResource;
 import es.upm.miw.web.http.HttpRequest;
