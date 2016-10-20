@@ -67,7 +67,7 @@ public class Dispatcher {
 
 	public void doPut(HttpRequest request, HttpResponse response) {
 		// PUT users/{nick}/sports body="sportName"
-		if ("users".equals(request.paths()[0]) && "sports".equals(request.paths()[2])) {
+		if ("users".equals(request.paths()[0]) && "sport".equals(request.paths()[2])) {
 			String nick = request.paths()[1];
 			try{
 				userResource.addSport(nick, request.getBody());
