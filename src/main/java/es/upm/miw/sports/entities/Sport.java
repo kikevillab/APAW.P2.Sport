@@ -28,6 +28,16 @@ public class Sport {
 
 	@Override
 	public String toString() {
-		return "Theme [id=" + id + ", name=" + name + "]";
+		return "Sport [id=" + id + ", name=" + name + "]";
+	}
+	
+	@Override
+	public boolean equals(Object other){
+	    if (other == null) return false;
+	    if (other == this) return true;
+	    if (!(other instanceof Sport))return false;
+	    Sport sport = (Sport) other;
+	    if(sport.getName().equals(this.getName())) return true;
+	    return false;
 	}
 }

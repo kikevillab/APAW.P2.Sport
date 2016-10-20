@@ -41,7 +41,7 @@ public class UserDaoMemory extends GenericMemoryDao<User> implements UserDao {
 	public User findByNick(String nick) {
 		List<User> userList = this.findAll();
 		for (User user : userList) {
-			if (user.getNick() == nick) {
+			if (user.getNick().equals(nick)) {
 				return user;
 			}
 		}

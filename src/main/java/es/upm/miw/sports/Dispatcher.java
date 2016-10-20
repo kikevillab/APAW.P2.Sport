@@ -20,13 +20,16 @@ public class Dispatcher {
 
 	public void doGet(HttpRequest request, HttpResponse response) {
 		// **/users
+//		System.out.println(request.paths()[0]);
+//		System.out.println(request.paths()[1]);
+		
 		if ("users".equals(request.getPath())) {
 			response.setBody(userResource.userList().toString());
 			
 			// **/users/search?sports=?
-		} else if ("users".equals(request.paths()[0]) && "search".equals(request.paths()[1].split("?")[0]) && request.getParams().get("sport") != null) {
+		} else if ("users".equals(request.paths()[0]) && "search".equals(request.paths()[1]) && request.getParams().get("sport") != null) {
 			try {
-				response.setBody(userResource.userListBySport(request.getBody()).toString());
+				response.setBody(userResource.userListBySport(request.getParams().get("sport")).toString());
 			} catch (Exception e) {
 				responseError(response, e);
 			}
@@ -44,7 +47,7 @@ public class Dispatcher {
 			try {
 				sportResource.createSport(request.getBody());
 				response.setStatus(HttpStatus.CREATED);
-			} catch (InvalidSportFieldException e) {
+			} catch (Exception e) {
 				this.responseError(response, e);
 			}
 			break;
@@ -71,7 +74,7 @@ public class Dispatcher {
 			String nick = request.paths()[1];
 			try{
 				userResource.addSport(nick, request.getBody());
-				response.setStatus(HttpStatus.CREATED);
+				response.setStatus(HttpStatus.OK);
 			}catch (Exception e){
 				responseError(response, e);
 			}

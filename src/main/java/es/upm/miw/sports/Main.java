@@ -13,14 +13,6 @@ public class Main {
 
 	private HttpRequest request = new HttpRequest();
 	
-	public void help() {
-		IO.getIO().println("GET **/themes");
-		IO.getIO().println("POST **/themes   body=\"themeName\"");
-		IO.getIO().println("GET **/themes/{id}/overage");
-		IO.getIO().println("POST **/votes   body=\"themeId:vote\"");
-		IO.getIO().println("GET **/votes");
-	}
-
 	public void demo() {
 		request.setMethod(HttpMethod.POST);
 		request.setPath("users");
@@ -74,47 +66,20 @@ public class Main {
 		this.request();
 		request.setMethod(HttpMethod.POST);
 		request.setPath("noPath");
+		request.clearQueryParams();
 		this.request();
 	}
 
-	public void httpMethod() {
-		request.setMethod((HttpMethod) IO.getIO().select(HttpMethod.values(), "Elige método"));
-		this.showStatus();
-	}
-
-	public void path() {
-		request.setPath(IO.getIO().readString("Path"));
-		this.showStatus();
-	}
-
-	public void addQueryParam() {
-		String[] msgs = { "Nombre", "Valor" };
-		String[] campos = { "String", "String" };
-		Object[] values = IO.getIO().readForm(campos, msgs);
-		request.addQueryParam((String) values[0], (String) values[1]);
-		this.showStatus();
-	}
-
-	public void clearQueryParams() {
-		request.clearQueryParams();
-		this.showStatus();
-	}
-
-	private void showStatus() {
-		IO.getIO().setStatusBar(request.toString());
-	}
-
 	public void request() {
-		IO.getIO().println(request.toString());
+		System.out.println(request.toString());
 		HttpResponse response = server.request(request);
-		IO.getIO().println(response);
-		IO.getIO().println("---------------------------------------ooo----------------------------------------");
+		System.out.println(response);
+		System.out.println("---------------------------------------ooo----------------------------------------");
 	}
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		IO.getIO().addView(main);
-		main.showStatus();
 		DaoFactory.setFactory(new DaoFactoryMemory());
+		main.demo();
 	}
 }

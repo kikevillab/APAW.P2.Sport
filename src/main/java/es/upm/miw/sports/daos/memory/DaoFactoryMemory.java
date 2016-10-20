@@ -2,9 +2,7 @@ package es.upm.miw.sports.daos.memory;
 
 import es.upm.miw.sports.daos.DaoFactory;
 import es.upm.miw.sports.daos.SportDao;
-import es.upm.miw.sports.daos.ThemeDao;
 import es.upm.miw.sports.daos.UserDao;
-import es.upm.miw.sports.daos.VoteDao;
 
 public class DaoFactoryMemory extends DaoFactory {
 
